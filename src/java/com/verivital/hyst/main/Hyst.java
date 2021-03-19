@@ -20,10 +20,13 @@ import org.kohsuke.args4j.Option;
 
 import com.verivital.hyst.generators.BuildGenerator;
 import com.verivital.hyst.generators.DrivetrainGenerator;
+import com.verivital.hyst.generators.FlashingGenerator;
 import com.verivital.hyst.generators.IntegralChainGenerator;
 import com.verivital.hyst.generators.ModelGenerator;
 import com.verivital.hyst.generators.NamedNavigationGenerator;
 import com.verivital.hyst.generators.NavigationGenerator;
+import com.verivital.hyst.generators.PetriNetGenerator;
+import com.verivital.hyst.generators.PetriNetGenerator_branching;
 import com.verivital.hyst.generators.SwitchedOscillatorGenerator;
 import com.verivital.hyst.grammar.formula.Expression;
 import com.verivital.hyst.importer.ConfigurationMaker;
@@ -55,6 +58,7 @@ import com.verivital.hyst.printers.DReachPrinter;
 import com.verivital.hyst.printers.FlowstarPrinter;
 import com.verivital.hyst.printers.HyCompPrinter;
 import com.verivital.hyst.printers.Hylaa2Printer;
+import com.verivital.hyst.printers.HyproPrinter;
 import com.verivital.hyst.printers.PySimPrinter;
 import com.verivital.hyst.printers.PythonQBMCPrinter;
 import com.verivital.hyst.printers.SimulinkStateflowPrinter;
@@ -81,7 +85,7 @@ public class Hyst
 	private final ToolPrinter[] printers = { new FlowstarPrinter(), new DReachPrinter(),
 			new HyCreate2Printer(), new HyCompPrinter(), new PythonQBMCPrinter(),
 			new SpaceExPrinter(), new SimulinkStateflowPrinter(), new PySimPrinter(),
-			new Hylaa2Printer() };
+			new Hylaa2Printer(), new HyproPrinter()};
 
 	// list of supported model transformation passes (add new ones here)
 	private final TransformationPass[] passes = { new AddIdentityResetPass(),
@@ -96,7 +100,7 @@ public class Hyst
 	// list of supported model generators (add new ones here)
 	private final ModelGenerator[] generators = { new IntegralChainGenerator(),
 			new NavigationGenerator(), new NamedNavigationGenerator(),
-			new SwitchedOscillatorGenerator(), new BuildGenerator(), new DrivetrainGenerator() };
+			new SwitchedOscillatorGenerator(), new BuildGenerator(), new DrivetrainGenerator(), new FlashingGenerator(), new PetriNetGenerator(), new PetriNetGenerator_branching()};
 
 	public static String TOOL_NAME = "Hyst v1.6";
 

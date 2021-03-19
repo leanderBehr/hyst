@@ -667,6 +667,7 @@ public class FlowstarPrinter extends ToolPrinter
 				String toName = t.to.name;
 
 				printLine(fromName + " -> " + toName);
+				if(t.urgent) printLine("urgent");
 				printLine("guard");
 				printLine("{");
 

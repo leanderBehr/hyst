@@ -21,6 +21,7 @@ import com.verivital.hyst.ir.network.ComponentInstance;
 import com.verivital.hyst.ir.network.NetworkComponent;
 import com.verivital.hyst.main.Hyst;
 import com.verivital.hyst.passes.basic.AffineTransformationPass;
+import com.verivital.hyst.passes.basic.CollapseIdenticalJumpsPass;
 import com.verivital.hyst.passes.basic.ConvertHavocFlows;
 import com.verivital.hyst.passes.basic.SimplifyExpressionsPass;
 import com.verivital.hyst.passes.basic.SplitDisjunctionGuardsPass;
@@ -69,6 +70,10 @@ public class Preconditions
 		skip[PreconditionsFlag.CONVERT_AFFINE_TERMS.ordinal()] = true;
 
 		skip[PreconditionsFlag.SIMPLIFY_EXPRESSIONS.ordinal()] = true;
+		
+		skip[PreconditionsFlag.COLLAPSE_IDENTICAL_JUMPS.ordinal()] = true;
+		
+		
 
 		if (skipAll)
 		{
@@ -143,6 +148,10 @@ public class Preconditions
 
 		if (!skip[PreconditionsFlag.ALL_CONSTANTS_DEFINED.ordinal()])
 			Preconditions.allConstantsDefined(c.root);
+		
+		if(!skip[PreconditionsFlag.COLLAPSE_IDENTICAL_JUMPS.ordinal()]) {
+			new CollapseIdenticalJumpsPass().runTransformationPass(c, "");
+		}
 	}
 
 	private static void doAffineTransformation(Configuration c)

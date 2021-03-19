@@ -243,15 +243,15 @@ UNIT_BASEDIR = "tests/unit/models/";
 
 		BaseComponent controller = (BaseComponent) componentTemplates.get("ControllerTemplate");
 		Assert.assertTrue("controller's first transition has a label",
-				controller.transitions.get(0).label != null);
+				controller.transitions.get(0).getLabel() != null);
 		Assert.assertTrue("controller's first transition's label is 'turn_on'",
-				controller.transitions.get(0).label.equals("turn_on"));
+				controller.transitions.get(0).getLabel().equals("turn_on"));
 
 		BaseComponent heater = (BaseComponent) componentTemplates.get("HeaterTemplate");
 		Assert.assertTrue("heaters first transition has a label",
-				heater.transitions.get(0).label != null);
+				heater.transitions.get(0).getLabel() != null);
 		Assert.assertTrue("heaters first transition's label is 'turn_on'",
-				heater.transitions.get(0).label.equals("turn_on"));
+				heater.transitions.get(0).getLabel().equals("turn_on"));
 
 		ConfigurationMaker.fromSpaceEx(spaceExDoc, componentTemplates);
 	}

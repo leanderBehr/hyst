@@ -254,7 +254,7 @@ public class TemplateImporter
 
 				t.guard = trans.getGuard() == null ? Constant.TRUE : trans.getGuard();
 				t.reset = AutomatonUtil.extractReset(trans.getAssignment(), rv.variables);
-				t.label = trans.getLabel();
+				t.setLabel(trans.getLabel());
 			}
 		}
 	}

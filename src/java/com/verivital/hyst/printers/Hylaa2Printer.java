@@ -112,9 +112,9 @@ public class Hylaa2Printer extends ToolPrinter
 			// trans.set_guard([[-1, 0, 0]], [-9.9])
 			// trans.set_reset(reset_csr, minkowski_csr, constraints_csr, constraints_rhs)
 
-			if (at.label != null && at.label.length() > 0)
+			if (at.getLabel() != null && at.getLabel().length() > 0)
 				rv.add("trans = ha.new_transition(" + at.from.name + ", " + at.to.name + ", '"
-						+ at.label + "')");
+						+ at.getLabel() + "')");
 			else
 				rv.add("trans = ha.new_transition(" + at.from.name + ", " + at.to.name + ")");
 

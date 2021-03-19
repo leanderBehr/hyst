@@ -364,7 +364,7 @@ public class FlattenAutomatonPass extends TransformationPass
 			AutomatonMode toLoc = originalT.to;
 			String toName = toLoc.name;
 
-			if (sharedLabels.contains(originalT.label))
+			if (sharedLabels.contains(originalT.getLabel()))
 				continue;
 
 			for (AutomatonMode locRv : rv.modes.values())
@@ -403,7 +403,7 @@ public class FlattenAutomatonPass extends TransformationPass
 
 							at.guard = originalT.guard.copy();
 							at.reset = copyMap(originalT.reset);
-							at.label = originalT.label;
+							at.setLabel(originalT.getLabel());
 						}
 					}
 				}
@@ -439,7 +439,7 @@ public class FlattenAutomatonPass extends TransformationPass
 	{
 		for (AutomatonTransition leftT : left.transitions)
 		{
-			String label = leftT.label;
+			String label = leftT.getLabel();
 
 			if (label == null || !sharedLabels.contains(label))
 				continue;
@@ -452,7 +452,7 @@ public class FlattenAutomatonPass extends TransformationPass
 			// find all matching right transitions
 			for (AutomatonTransition rightT : right.transitions)
 			{
-				if (!label.equals(rightT.label))
+				if (!label.equals(rightT.getLabel()))
 					continue;
 
 				// at this point labels match and we can determine the full
@@ -479,7 +479,8 @@ public class FlattenAutomatonPass extends TransformationPass
 
 				AutomatonTransition at = rv.createTransition(sourceMode, targetMode);
 				at.guard = andExpressions(leftT.guard, rightT.guard);
-				at.label = label;
+				at.setLabel(label);
+				at.urgent = leftT.urgent || rightT.urgent;
 
 				try
 				{

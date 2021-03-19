@@ -62,7 +62,7 @@ public class Configuration
 		Collection<String> validVarNames = root.getAllVariables();
 		validVarNames.addAll(root.getAllConstants().keySet());
 
-		validateMap(init, "init", validVarNames, false);
+		validateMap(init, "init", validVarNames, true);
 		validateMap(forbidden, "forbidden", validVarNames, true);
 
 		// validate the children
